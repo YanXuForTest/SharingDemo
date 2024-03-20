@@ -23,6 +23,8 @@ jobs:
       run: | 
         Write-Host "SECRET1:" $env:SECRET1
         Write-Host "SECRET2:" $env:SECRET2
+    - name: Check out
+      uses: actions/checkout@v4
     - name: Print SECRET - script
       shell: pwsh
       env: 
@@ -41,6 +43,8 @@ jobs:
       run: | 
         Write-Host "SECRET1:" $env:SECRET1
         Write-Host "SECRET2:" $env:SECRET2
+    - name: Check out
+      uses: actions/checkout@v4
     - name: Print SECRET - script
       shell: pwsh
       env: 

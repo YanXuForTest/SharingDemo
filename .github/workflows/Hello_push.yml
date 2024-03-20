@@ -1,0 +1,14 @@
+name: Hello_push
+
+on:
+  workflow_dispatch:
+  push:
+  
+jobs:
+  HelloPushJob:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Say Hello
+      shell: pwsh
+      run: | 
+        Write-Host "hello!"

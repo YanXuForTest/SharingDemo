@@ -1,0 +1,13 @@
+name: Hello_pull_request_target
+
+on:
+  pull_request_target:
+  
+jobs:
+  HelloPRTargetJob:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Say Hello
+      shell: pwsh
+      run: | 
+        Write-Host "hello!"

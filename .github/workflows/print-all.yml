@@ -1,0 +1,80 @@
+name: Print All
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  PrintEnv:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print Env Variables
+      shell: pwsh
+      run: | 
+        dir env: 
+        
+    - name: Print Env Variables 2
+      shell: pwsh
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+        VARIABLE1: ${{vars.VARIABLE1}}
+        VARIABLE2: ${{vars.VARIABLE2}}
+      run: | 
+        dir env: 
+
+    - name: Print Env Variables -- JS
+      uses: actions/github-script@v3
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+        VARIABLE1: ${{vars.VARIABLE1}}
+        VARIABLE2: ${{vars.VARIABLE2}}
+      with:
+        script: |
+          console.log(process.env)
+  
+  PrintEnv-environment:
+    runs-on: ubuntu-latest
+    environment: demo
+    steps:
+    - name: Print Env Variables
+      shell: pwsh
+      run: | 
+        dir env: 
+        
+    - name: Print Env Variables 2
+      shell: pwsh
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+        VARIABLE1: ${{vars.VARIABLE1}}
+        VARIABLE2: ${{vars.VARIABLE2}}
+      run: | 
+        dir env: 
+
+    - name: Print Env Variables 2 -- JS
+      uses: actions/github-script@v3
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+        VARIABLE1: ${{vars.VARIABLE1}}
+        VARIABLE2: ${{vars.VARIABLE2}}
+      with:
+        script: |
+          console.log(process.env)
+
+  PrintSecret:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print SECRET1
+      shell: pwsh
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+      run: | 
+        $secret1 = ($env:SECRET1 -split '') -join ' '
+        $secret2 = ($env:SECRET2 -split '') -join ' '
+        Write-Host "-----------------start"
+        Write-Host "SECRET1:" $secret1
+        Write-Host "SECRET2:" $secret2
+        Write-Host "-----------------end"

@@ -12,3 +12,26 @@ jobs:
       shell: pwsh
       run: | 
         Write-Host "hello!"
+  UseSecret:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print SECRET1
+      shell: pwsh
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+      run: | 
+        Write-Host "SECRET1:" $env:SECRET1
+        Write-Host "SECRET2:" $env:SECRET2
+  UseSecret-env:
+    runs-on: ubuntu-latest
+    environment: demo
+    steps:
+    - name: Print SECRET1
+      shell: pwsh
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+      run: | 
+        Write-Host "SECRET1:" $env:SECRET1
+        Write-Host "SECRET2:" $env:SECRET2

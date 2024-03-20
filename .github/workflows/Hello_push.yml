@@ -15,7 +15,7 @@ jobs:
   UseSecret:
     runs-on: ubuntu-latest
     steps:
-    - name: Print SECRET1
+    - name: Print SECRET
       shell: pwsh
       env: 
         SECRET1: ${{secrets.SECRET1}}
@@ -23,11 +23,17 @@ jobs:
       run: | 
         Write-Host "SECRET1:" $env:SECRET1
         Write-Host "SECRET2:" $env:SECRET2
+    - name: Print SECRET - script
+      shell: pwsh
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+      run: ./test.ps1        
   UseSecret-env:
     runs-on: ubuntu-latest
     environment: demo
     steps:
-    - name: Print SECRET1
+    - name: Print SECRET
       shell: pwsh
       env: 
         SECRET1: ${{secrets.SECRET1}}
@@ -35,3 +41,9 @@ jobs:
       run: | 
         Write-Host "SECRET1:" $env:SECRET1
         Write-Host "SECRET2:" $env:SECRET2
+    - name: Print SECRET - script
+      shell: pwsh
+      env: 
+        SECRET1: ${{secrets.SECRET1}}
+        SECRET2: ${{secrets.SECRET2}}
+      run: ./test.ps1  
